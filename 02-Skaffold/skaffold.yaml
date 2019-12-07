@@ -1,15 +1,22 @@
 apiVersion: skaffold/v1
 kind: Config
 build:
-  tagPolicy:
-    sha256: {}
   artifacts:
     - image: awesomenamespace/awesomeapp
 deploy:
   helm:
+    flags:
+      global: ["--tiller-namespace=helm-test"]
     releases:
-      - name: skaffold-helm
+      - name: awesomeapp
+        namespace: helm-test
+        skipBuildDependencies: true
         chartPath: awesomeapp
         values:
-          image:
-            repository: awesomenamespace/awesomeapp
+          image.repository: awesomenamespace/awesomeapp
+portForward:
+  - resourceType: deployment
+    resourceName: awesomeapp-php
+    namespace: helm-test
+    port: 80
+    localPort: 8080
