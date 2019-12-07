@@ -1,12 +1,11 @@
-FROM php:7.1-apache-stretch
+FROM node:8.11.4-alpine
 
-ENV PORT 80
-EXPOSE 80
+RUN mkdir /app
+WORKDIR /app
 
-RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+COPY package.json .
+RUN npm install
 
-COPY . /var/www/html
+COPY . .
 
-RUN usermod -u 1000 www-data; \
-    a2enmod rewrite; \
-    chown -R www-data:www-data /var/www/html
+CMD ["npm", "start"]

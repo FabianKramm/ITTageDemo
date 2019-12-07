@@ -3,7 +3,7 @@ images:
   default:
     image: dscr.io/${DEVSPACE_USERNAME}/devspace
 deployments:
-  - name: php-mysql-example
+  - name: quickstart
     helm:
       componentChart: true
       values:
@@ -11,12 +11,17 @@ deployments:
           - image: dscr.io/${DEVSPACE_USERNAME}/devspace
         service:
           ports:
-            - port: 80
+            - port: 3000
 dev:
+  autoReload:
+    paths:
+      - ./package.json
   ports:
     - imageName: default
       forward:
-        - port: 8080
-          remotePort: 80
+        - port: 3000
+        - port: 9229
   sync:
     - imageName: default
+      excludePaths:
+        - node_modules

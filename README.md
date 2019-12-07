@@ -40,5 +40,5 @@ k delete ns helm-test
 
 ```
 cd 03-DevSpace
-k create ns helm-test
+devspace dev -n helm-test
 ```
