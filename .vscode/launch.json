@@ -10,7 +10,7 @@
       "localRoot": "${workspaceFolder}/03-DevSpace",
       "remoteRoot": "/app",
       "address": "127.0.0.1",
-      "port": "9229"
+      "port": 9229
     }
   ]
 }
