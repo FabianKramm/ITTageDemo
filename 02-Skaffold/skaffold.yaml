@@ -1,0 +1,15 @@
+apiVersion: skaffold/v1
+kind: Config
+build:
+  tagPolicy:
+    sha256: {}
+  artifacts:
+    - image: awesomenamespace/awesomeapp
+deploy:
+  helm:
+    releases:
+      - name: skaffold-helm
+        chartPath: awesomeapp
+        values:
+          image:
+            repository: awesomenamespace/awesomeapp
