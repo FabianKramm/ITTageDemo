@@ -22,22 +22,23 @@ helm3 upgrade awesomeapp ./awesomeapp -n helm-test
 
 ## Rollback release
 helm3 rollback awesomeapp -n helm-test
+
+k delete ns helm-test
 ```
 
 ## Skaffold
 
 ```
 cd 02-Skaffold
-k delete ns helm-test
 k create ns helm-test
 helm init --tiller-namespace helm-test
 skaffold dev --port-forward -n helm-test
+k delete ns helm-test
 ```
 
 # DevSpace
 
 ```
 cd 03-DevSpace
-k delete ns helm-test
 k create ns helm-test
 ```
