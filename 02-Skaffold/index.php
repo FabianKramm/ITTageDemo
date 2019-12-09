@@ -24,6 +24,8 @@ $sql = "CREATE TABLE IF NOT EXISTS Users (
 if ($conn->query($sql) !== TRUE) {
     die("Error creating table: " . $conn->error);
 }
+
+
 $firstname = null;
 $lastname = null;
 if(isset($_POST["firstname"]) && isset($_POST["lastname"])) {
