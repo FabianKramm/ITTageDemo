@@ -1,14 +1,14 @@
 version: v1beta5
 images:
   default:
-    image: dscr.io/${DEVSPACE_USERNAME}/devspace
+    image: awesomenamespace/awesomeapp
 deployments:
   - name: quickstart
     helm:
       componentChart: true
       values:
         containers:
-          - image: dscr.io/${DEVSPACE_USERNAME}/devspace
+          - image: awesomenamespace/awesomeapp
         service:
           ports:
             - port: 3000
@@ -16,6 +16,7 @@ dev:
   autoReload:
     paths:
       - ./package.json
+      - ./Dockerfile
   ports:
     - imageName: default
       forward:
@@ -25,3 +26,13 @@ dev:
     - imageName: default
       excludePaths:
         - node_modules
+commands:
+  - name: debug
+    command: "devspace dev --profile=debug"
+profiles:
+  - name: debug
+    replace:
+      images:
+        default:
+          image: awesomenamespace/awesomeapp
+          cmd: ["npm", "run", "debug"]
