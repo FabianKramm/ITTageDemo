@@ -86,7 +86,7 @@ if(isset($_POST["firstname"]) && isset($_POST["lastname"])) {
                 </div>
             </div>
         <?php else : ?>
-            <div>Welcome back to <?php echo $firstname." ".$lastname ?></div>
+            <div>Welcome back to IT Tage <?php echo $firstname." ".$lastname ?></div>
         <?php endif; ?>
     </body>
 </html>
